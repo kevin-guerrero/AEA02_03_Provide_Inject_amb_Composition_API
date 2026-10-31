@@ -1,7 +1,7 @@
 <script setup>
     import { inject, computed } from 'vue';
+    import CartItem from './CartItem.vue';
 
-    const props = defineProps(['product']);
     const cart = inject('cart');
 
     const total = computed(() => 
@@ -18,10 +18,11 @@
     <div class="cart">
         <h2>Carret</h2>
         <ul>
-            <li v-for="item in cart" 
-            :key="item.name"> 
-            {{ item.name }} - {{ item.price }}
-            </li>
+            <CartItem 
+                v-for="item in cart"
+                :key="item.name"
+                :product="item"
+            />
         </ul>
         <p class="total"> Total: {{ total }}€ </p>
     </div>
